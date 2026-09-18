@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boban Vinit W — L2 Application Support Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red: #D6172D;
+    --red-dark: #9C0F20;
+    --navy: #0A1128;
+    --navy-2: #101B3D;
+    --ink: #12121A;
+    --paper: #F2E9D8;
+    --paper-2: #E9DEC7;
+    --yellow: #F2C230;
+    --white: #FDFBF6;
+    --line: #0A0A10;
+    --maxw: 1080px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--navy);
+    color: var(--white);
+    font-family: "Work Sans", -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3{
+    font-family: "Bangers", "Work Sans", sans-serif;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin: 0;
+  }
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+  :focus-visible{ outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+  .halftone{
+    background-image: radial-gradient(var(--white) 1px, transparent 1.4px);
+    background-size: 10px 10px;
+    opacity: 0.08;
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+  }
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky; top:0; z-index: 50;
+    background: var(--line);
+    border-bottom: 4px solid var(--red);
+  }
+  .nav-inner{
+    max-width: var(--maxw); margin:0 auto; padding: 12px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:"Bangers"; font-size: 1.5rem; color: var(--white); text-decoration:none; }
+  .brand svg{ width:30px; height:30px; }
+  nav.links{ display:flex; gap: 22px; }
+  nav.links a{
+    text-decoration:none; color: var(--paper); font-weight:600; font-size: 0.95rem;
+    padding: 4px 2px; border-bottom: 2px solid transparent;
+  }
+  nav.links a:hover{ border-bottom-color: var(--red); color: var(--white); }
+  .menu-btn{ display:none; background:none; border:2px solid var(--paper); color:var(--paper); border-radius:4px; padding:6px 10px; font-size:1rem; cursor:pointer; }
+
+  @media (max-width: 720px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0; background: var(--line);
+      flex-direction:column; padding: 12px 24px 20px; gap: 14px;
+      border-bottom: 4px solid var(--red);
+      display:none;
+    }
+    nav.links.open{ display:flex; }
+    .menu-btn{ display:inline-block; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background: radial-gradient(ellipse at 30% 20%, var(--navy-2), var(--navy) 70%);
+    padding: 90px 24px 100px;
+    border-bottom: 6px solid var(--red);
+  }
+  .web-bg{ position:absolute; inset:0; opacity:0.35; }
+  .hero-content{ position:relative; max-width: var(--maxw); margin:0 auto; }
+  .kicker{
+    display:inline-block; background: var(--red); color: var(--white);
+    font-weight:700; font-size:0.85rem; padding: 5px 14px;
+    clip-path: polygon(0 0, 100% 0, 94% 100%, 6% 100%);
+    margin-bottom: 22px;
+  }
+  .hero h1{
+    font-size: clamp(3rem, 9vw, 6.2rem);
+    color: var(--white);
+    text-shadow: 4px 4px 0 var(--red), 8px 8px 0 var(--line);
+  }
+  .hero p.tagline{
+    max-width: 620px; margin-top: 22px; font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: var(--paper); font-weight: 500;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap: 12px; margin-top: 34px; }
+  .chip{
+    display:flex; align-items:center; gap:8px;
+    background: var(--line); border: 2px solid var(--paper-2);
+    color: var(--paper); padding: 9px 16px; font-size:0.92rem; font-weight:600;
+    text-decoration:none; clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  }
+  .chip:hover{ border-color: var(--red); color: var(--white); }
+  .chip svg{ width:16px; height:16px; flex-shrink:0; }
+
+  /* ---------- SECTIONS / PANELS ---------- */
+  section{ padding: 76px 24px; position:relative; }
+  .section-head{ margin-bottom: 40px; max-width: 640px; }
+  .section-head h2{
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    color: var(--yellow);
+    text-shadow: 3px 3px 0 var(--line);
+  }
+  .section-head p{ color: var(--paper-2); margin-top:10px; font-size:1.05rem; }
+
+  .panel{
+    background: var(--paper); color: var(--ink);
+    border: 3px solid var(--line);
+    box-shadow: 8px 8px 0 var(--line);
+    padding: 34px;
+  }
+
+  /* Origin */
+  .origin{ background: var(--navy-2); }
+  .origin-grid{ display:grid; grid-template-columns: 1.6fr 1fr; gap: 26px; }
+  .origin-grid .panel p{ margin: 0 0 14px; font-size: 1.03rem; }
+  .origin-grid .panel p:last-child{ margin-bottom:0; }
+  .stat-panel{ background: var(--line); color: var(--paper); border:3px solid var(--red); box-shadow: 8px 8px 0 var(--red); padding: 26px; height:fit-content; }
+  .stat-panel h3{ font-family:"Bangers"; font-size:1.4rem; color:var(--yellow); margin-bottom:16px; }
+  .stat-row{ display:flex; justify-content:space-between; gap:10px; padding: 9px 0; border-bottom: 1px solid rgba(242,233,216,0.15); font-size:0.92rem; }
+  .stat-row:last-child{ border-bottom:none; }
+  .stat-row span:first-child{ color: var(--paper-2); }
+  .stat-row span:last-child{ font-weight:600; text-align:right; }
+
+  @media (max-width: 820px){ .origin-grid{ grid-template-columns:1fr; } }
+
+  /* Powers */
+  .powers{ background: var(--ink); }
+  .power-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .power-card{
+    background: var(--paper); border:3px solid var(--line); padding: 26px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    transition: transform 0.15s ease;
+  }
+  .power-card:hover{ transform: translate(-3px,-3px); }
+  .power-card h3{ font-family:"Bangers"; font-size:1.5rem; color: var(--red-dark); margin-bottom: 14px; }
+  .tag-list{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    background: var(--navy); color: var(--paper); font-size:0.82rem; font-weight:600;
+    padding: 6px 11px; clip-path: polygon(6px 0,100% 0,100% 100%,0 100%,0 6px);
+  }
+  .tag.blue{ background: var(--red); }
+  @media (max-width: 900px){ .power-grid{ grid-template-columns: 1fr; } }
+
+  .lang-strip{
+    margin-top: 26px; display:flex; flex-wrap:wrap; align-items:center; gap:14px;
+    background: var(--navy-2); border-left: 5px solid var(--yellow); padding: 16px 22px; color: var(--paper);
+  }
+  .lang-strip strong{ color: var(--yellow); font-family:"Bangers"; font-size:1.1rem; letter-spacing:0.03em; }
+
+  /* Mission log */
+  .mission{ background: var(--navy); }
+  .mission-panel{ background: var(--paper); }
+  .mission-top{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; border-bottom:3px solid var(--line); padding-bottom:18px; margin-bottom:22px; }
+  .mission-top h3{ font-family:"Bangers"; font-size:1.7rem; color:var(--red-dark); }
+  .mission-top .role{ font-weight:700; color: var(--ink); }
+  .mission-top .meta{ color:#5a5648; font-size:0.9rem; font-weight:600; }
+  .mission-list{ list-style:none; margin:0; padding:0; display:grid; gap:12px; }
+  .mission-list li{ display:flex; gap:12px; align-items:flex-start; font-size:0.98rem; }
+  .mission-list li svg{ width:16px; height:16px; flex-shrink:0; margin-top:4px; }
+
+  /* Case files */
+  .cases{ background: var(--ink); }
+  .case-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+  .case-card{ background: var(--paper); border: 3px solid var(--line); box-shadow: 6px 6px 0 var(--red); padding:24px; display:flex; flex-direction:column; }
+  .case-stamp{
+    align-self:flex-start; font-family:"Bangers"; font-size:0.85rem; letter-spacing:0.05em;
+    background: var(--red); color:var(--white); padding: 4px 10px; margin-bottom:14px;
+    transform: rotate(-3deg);
+  }
+  .case-card h3{ font-size:1.25rem; font-family:"Work Sans"; font-weight:700; color:var(--ink); margin-bottom:10px; }
+  .case-card ul{ margin:0; padding-left:18px; font-size:0.92rem; color:#3a382f; display:grid; gap:8px; }
+  @media (max-width: 900px){ .case-grid{ grid-template-columns:1fr; } }
+
+  /* Training */
+  .training{ background: var(--navy); }
+  .training-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:22px; }
+  .training .panel h3{ font-family:"Bangers"; font-size:1.4rem; color:var(--red-dark); margin-bottom:16px; }
+  .edu-row{ display:flex; justify-content:space-between; gap:10px; padding:10px 0; border-bottom:1px solid rgba(18,18,26,0.12); font-size:0.95rem; }
+  .edu-row:last-child{ border:none; }
+  .edu-row span:last-child{ color:#5a5648; font-weight:600; }
+  .cert-row{ display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid rgba(18,18,26,0.12); font-size:0.95rem; }
+  .cert-row:last-child{ border:none; }
+  .cert-row svg{ width:18px; height:18px; margin-top:2px; flex-shrink:0; color: var(--red-dark); }
+  @media (max-width: 720px){ .training-grid{ grid-template-columns:1fr; } }
+
+  /* Signal / contact */
+  .signal{
+    background: radial-gradient(ellipse at 50% 0%, var(--red-dark), var(--navy) 65%);
+    text-align:center; padding: 90px 24px; border-top:6px solid var(--red);
+  }
+  .signal h2{ font-size: clamp(2.4rem, 7vw, 4rem); color: var(--white); text-shadow: 4px 4px 0 var(--line); }
+  .signal p{ color: var(--paper); max-width:520px; margin: 18px auto 34px; font-size:1.05rem; }
+  .signal-buttons{ display:flex; flex-wrap:wrap; justify-content:center; gap:16px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; padding: 14px 26px; font-weight:700; font-size:1rem;
+    text-decoration:none; border: 3px solid var(--line);
+    clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+  }
+  .btn-primary{ background: var(--yellow); color: var(--line); }
+  .btn-primary:hover{ background: var(--white); }
+  .btn-outline{ background: transparent; color: var(--white); border-color: var(--paper); }
+  .btn-outline:hover{ border-color: var(--yellow); color: var(--yellow); }
+
+  footer{ background: var(--line); color: var(--paper-2); text-align:center; padding: 24px; font-size:0.85rem; border-top: 4px solid var(--red); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .power-card{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="#D6172D" stroke-width="2.5"/>
+        <path d="M20 2V38M2 20H38M6 6L34 34M34 6L6 34M20 2C14 10 14 30 20 38M20 2C26 10 26 30 20 38M2 20C10 14 30 14 38 20M2 20C10 26 30 26 38 20" stroke="#D6172D" stroke-width="1.1"/>
+      </svg>
+      BOBAN VINIT W
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <nav class="links" id="navLinks">
+      <a href="#origin">Origin</a>
+      <a href="#powers">Powers</a>
+      <a href="#missions">Missions</a>
+      <a href="#cases">Case Files</a>
+      <a href="#training">Training</a>
+      <a href="#signal">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="web-bg" viewBox="0 0 900 500" preserveAspectRatio="xMaxYMin slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#D6172D" stroke-width="1" opacity="0.5" fill="none">
+      <circle cx="820" cy="-40" r="90"/>
+      <circle cx="820" cy="-40" r="150"/>
+      <circle cx="820" cy="-40" r="210"/>
+      <circle cx="820" cy="-40" r="270"/>
+      <circle cx="820" cy="-40" r="330"/>
+      <line x1="820" y1="-40" x2="450" y2="120"/>
+      <line x1="820" y1="-40" x2="560" y2="330"/>
+      <line x1="820" y1="-40" x2="780" y2="420"/>
+      <line x1="820" y1="-40" x2="950" y2="380"/>
+      <line x1="820" y1="-40" x2="1000" y2="150"/>
+      <line x1="820" y1="-40" x2="650" y2="-30"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <span class="kicker">L2 Application Support Engineer</span>
+    <h1>BOBAN<br>VINIT W</h1>
+    <p class="tagline">Two years keeping TVS Motor Company's dealer network swinging — supporting the Enquiry Management System and Dealer Management System across dealers in India, Bangladesh, Spain, Latin America, and Nigeria.</p>
+    <div class="chip-row">
+      <a class="chip" href="mailto:bobanvinit175@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg>
+        bobanvinit175@gmail.com
+      </a>
+      <a class="chip" href="tel:+918220872110">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.7 2z"/></svg>
+        +91 82208 72110
+      </a>
+      <a class="chip" href="https://linkedin.com/in/boban-vinit-w-399a78220" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.97-1.8-2.97-1.8 0-2.08 1.4-2.08 2.87V21H9z"/></svg>
+        LinkedIn
+      </a>
+      <span class="chip">Hosur, India</span>
+    </div>
+  </div>
+</section>
+
+<section class="origin" id="origin">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Origin Story</h2>
+      <p>Every support engineer has one. Here's how this one got started.</p>
+    </div>
+    <div class="origin-grid">
+      <div class="panel">
+        <p>Boban spent two years as an L2 Application Support Engineer, deployed at TVS Motor Company through Macs InfoSolutions, keeping two critical platforms running: the Enquiry Management System (EMS) for two- and three-wheeler sales, and the Dealer Management System (DMS) for service and parts.</p>
+        <p>The job spans dealer networks across India and international markets in Bangladesh, Spain, Latin America, and Nigeria — troubleshooting live issues, running UAT before releases, and translating dealer feedback into fixes the development team could act on.</p>
+        <p>Comfortable in AWS (EC2, S3, EBS, IAM, VDI) and SQL-based data validation, with a track record of keeping systems available through the highest-pressure stretch of the year: festival and peak sales season.</p>
+      </div>
+      <div class="stat-panel">
+        <h3>Vital Stats</h3>
+        <div class="stat-row"><span>Base of operations</span><span>Hosur, India</span></div>
+        <div class="stat-row"><span>Experience</span><span>2 years</span></div>
+        <div class="stat-row"><span>Markets covered</span><span>India, Bangladesh, Spain, LatAm, Nigeria</span></div>
+        <div class="stat-row"><span>Core platforms</span><span>EMS &amp; DMS</span></div>
+        <div class="stat-row"><span>Languages</span><span>English, Hindi, Tamil</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="powers" id="powers">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Powers &amp; Abilities</h2>
+      <p>The toolkit behind every resolved ticket and every dealer who stayed online.</p>
+    </div>
+    <div class="power-grid">
+      <div class="power-card">
+        <h3>Cloud &amp; Infrastructure</h3>
+        <div class="tag-list">
+          <span class="tag">EC2</span><span class="tag">S3</span><span class="tag">EBS</span><span class="tag">EFS</span>
+          <span class="tag">RDS</span><span class="tag">VPC</span><span class="tag">IAM</span><span class="tag">Route53</span>
+          <span class="tag">CloudFront</span><span class="tag">CloudWatch</span><span class="tag">CloudFormation</span>
+          <span class="tag">Auto Scaling</span><span class="tag">Elastic Load Balancer</span>
+        </div>
+      </div>
+      <div class="power-card">
+        <h3>Support &amp; Tools</h3>
+        <div class="tag-list">
+          <span class="tag blue">Jira</span><span class="tag blue">BoldDesk</span><span class="tag blue">SQL</span>
+          <span class="tag blue">Python</span><span class="tag blue">SAP Data Validation</span><span class="tag blue">UAT</span>
+          <span class="tag blue">VDI Administration</span><span class="tag blue">CCAvenue Integration</span>
+        </div>
+      </div>
+      <div class="power-card">
+        <h3>Client &amp; CRM</h3>
+        <div class="tag-list">
+          <span class="tag">Dealer Relationship Mgmt</span><span class="tag">EMS Configuration</span>
+          <span class="tag">Dealer Training</span><span class="tag">Requirements Gathering</span>
+          <span class="tag">International Client Support</span><span class="tag">Technical Documentation</span>
+        </div>
+      </div>
+    </div>
+    <div class="lang-strip">
+      <strong>Fluent in:</strong> English &nbsp;•&nbsp; Hindi &nbsp;•&nbsp; Tamil — put to work supporting international dealer teams directly.
+    </div>
+  </div>
+</section>
+
+<section class="mission" id="missions">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Mission Log</h2>
+      <p>Field assignment: Macs InfoSolutions India Pvt. Ltd., deployed at TVS Motor Company.</p>
+    </div>
+    <div class="panel mission-panel">
+      <div class="mission-top">
+        <div>
+          <h3>L2 Application Support Engineer</h3>
+          <div class="role">Macs InfoSolutions India Pvt. Ltd. — deployed at TVS Motor Company</div>
+        </div>
+        <div class="meta">May 2023 – April 2025 · Hosur, India</div>
+      </div>
+      <ul class="mission-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#D6172D" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>Delivered end-to-end L2 support for EMS and DMS, serving dealers pan-India and across Bangladesh, Spain, Latin America, and Nigeria.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#D6172D" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>Partnered with sales and technical teams to gather dealer requirements and customize EMS/DMS configurations to fit each business.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#D6172D" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>Ran training sessions for dealers and staff on EMS/DMS usage and best practices, in English, Hindi, and Tamil.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#D6172D" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>Traced complex issues to root cause and coordinated with development on fixes, feature rollouts, and rollbacks.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#D6172D" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>Logged and resolved issues in Jira and BoldDesk from creation through closure, steadily improving resolution times.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#D6172D" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>Ran UAT on new features and updates to keep releases reliable and bug-free.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#D6172D" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>Monitored and validated SAP data integrity, catching and correcting discrepancies before they became problems.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#D6172D" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>Held the line during two consecutive festival and peak sales seasons, keeping dealer applications available under pressure.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cases" id="cases">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Case Files</h2>
+      <p>Three projects pulled from the archive.</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-card">
+        <span class="case-stamp">CASE FILE: EMS</span>
+        <h3>Enquiry Management System</h3>
+        <ul>
+          <li>Supported the CRM web app used by two- and three-wheeler dealers to manage enquiries and bookings.</li>
+          <li>Resolved server downtime, failed-update rollbacks, and EMS-specific errors, including chassis and engine number mismatches.</li>
+          <li>Ran UAT and tracked enquiry, booking, and delivery status to keep rollouts smooth.</li>
+        </ul>
+      </div>
+      <div class="case-card">
+        <span class="case-stamp">CASE FILE: PAYMENTS</span>
+        <h3>Booking &amp; Transaction Validation</h3>
+        <ul>
+          <li>Verified booking IDs and vehicle details against the dealer-facing website using SQL, cross-checking transactions against payment completion.</li>
+          <li>Integrated with the CCAvenue payment gateway to track shipping, confirmations, refunds, and settlements.</li>
+          <li>Kept the booking database, payment gateway, and EMS in sync, chasing unresolved payment issues to closure.</li>
+        </ul>
+      </div>
+      <div class="case-card">
+        <span class="case-stamp">CASE FILE: VDI/AWS</span>
+        <h3>VDI &amp; AWS Resource Support</h3>
+        <ul>
+          <li>Set up and supported Virtual Desktop Infrastructure for the sales team, resolving login and performance issues.</li>
+          <li>Configured EC2 test/support environments and built AMIs for standardized rollouts.</li>
+          <li>Managed EBS volumes and S3 backups, and applied IAM roles for secure, role-based access.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="training" id="training">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Training Grounds</h2>
+      <p>Where the fundamentals were built.</p>
+    </div>
+    <div class="training-grid">
+      <div class="panel">
+        <h3>Education</h3>
+        <div class="edu-row"><span>Master of Computer Applications (MCA)</span><span>2021 – 2023</span></div>
+        <div class="edu-row"><span>B.Sc. Computer Science</span><span>2018 – 2021</span></div>
+      </div>
+      <div class="panel">
+        <h3>Certifications</h3>
+        <div class="cert-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.9H21l-5.7 4.1 2.2 6.9L12 15.8 6.5 20 8.7 13 3 8.9h6.6z"/></svg>
+          Microsoft Certified: Azure Fundamentals
+        </div>
+        <div class="cert-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.9H21l-5.7 4.1 2.2 6.9L12 15.8 6.5 20 8.7 13 3 8.9h6.6z"/></svg>
+          Microsoft Certified: Azure AI Fundamentals
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="signal" id="signal">
+  <div class="wrap">
+    <h2>Send the Signal</h2>
+    <p>Got a dealer platform that needs someone steady on the other end of the ticket? Let's talk.</p>
+    <div class="signal-buttons">
+      <a class="btn btn-primary" href="mailto:bobanvinit175@gmail.com">Email Boban</a>
+      <a class="btn btn-outline" href="tel:+918220872110">Call +91 82208 72110</a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/boban-vinit-w-399a78220" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Boban Vinit W · L2 Application Support Engineer · Hosur, India
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
